@@ -246,12 +246,11 @@ class Editor extends HTMLElement {
 
   async #loadParser() {
     try {
-      const { Lexer } = await import(`/Editor/lexers/${this.#lang}.min.js`);
-      this.#parser = new Lexer();
+      const { tokenize } = await import(`/Editor/lexers/${this.#lang}.min.js`);
+      this.#parser = tokenize;
     } catch (e) {
       console.warn(`Parser for "${this.#lang}" not found. Falling back to plain.`);
-      const Parser = class {tokenize(v) {return [{type:'plain',value:v}]}};
-      this.#parser = new Parser();
+      this.#parser =v=>[{type: 'plain', value: v}];
       this.#lang = 'plain';
     }
   }
@@ -313,8 +312,7 @@ class Editor extends HTMLElement {
     flex.style.height = text.style.height;
   }
   #update(view, text) {
-    console.log(this.#parser.tokenize(text.value));
-    view.innerHTML = this.#parser.tokenize(text.value).map(tok => `<span class="${tok.type}">${this.#escapeHtml(tok.value)}</span>`).join('');
+    view.innerHTML = this.#parser(text.value).map(tok => `<span class="${tok.type}">${this.#escapeHtml(tok.value)}</span>`).join('');
     this.#autoResize(text, view);
   }
   #updateLines(text) {
