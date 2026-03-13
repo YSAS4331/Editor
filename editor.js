@@ -246,7 +246,7 @@ class Editor extends HTMLElement {
 
   async #loadParser() {
     try {
-      const { default: Parser } = await import(`/Editor/lexers/${this.#lang}.min.js`);
+      const { Parser } = await import(`/Editor/lexers/${this.#lang}.min.js`);
       this.#parser = new Parser();
     } catch (e) {
       console.warn(`Parser for "${this.#lang}" not found. Falling back to plain.`);
