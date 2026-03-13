@@ -313,6 +313,7 @@ class Editor extends HTMLElement {
     flex.style.height = text.style.height;
   }
   #update(view, text) {
+    console.log(this.#parser.tokenize(text.value));
     view.innerHTML = this.#parser.tokenize(text.value).map(tok => `<span class="${tok.type}">${this.#escapeHtml(tok.value)}</span>`).join('');
     this.#autoResize(text, view);
   }
