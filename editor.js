@@ -250,7 +250,7 @@ class Editor extends HTMLElement {
       this.#parser = new Parser();
     } catch (e) {
       console.warn(`Parser for "${this.#lang}" not found. Falling back to plain.`);
-      const Parser = class {tokenize(v) {return [{type:'plain',value:v}]};
+      const Parser = class {tokenize(v) {return [{type:'plain',value:v}]}};
       this.#parser = new Parser();
       this.#lang = 'plain';
     }
