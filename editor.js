@@ -246,8 +246,8 @@ class Editor extends HTMLElement {
 
   async #loadParser() {
     try {
-      const { Parser } = await import(`/Editor/lexers/${this.#lang}.min.js`);
-      this.#parser = new Parser();
+      const { Lexer } = await import(`/Editor/lexers/${this.#lang}.min.js`);
+      this.#parser = new Lexer();
     } catch (e) {
       console.warn(`Parser for "${this.#lang}" not found. Falling back to plain.`);
       const Parser = class {tokenize(v) {return [{type:'plain',value:v}]}};
