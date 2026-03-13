@@ -3,6 +3,7 @@ class Editor extends HTMLElement {
   #place;
   #tab;
   #timer;
+  #parser;
   #style = `
     :host {
       width: 100%;
@@ -180,6 +181,11 @@ class Editor extends HTMLElement {
   static get observedAttributes() {
     return ['lang', 'value', 'placeholder', 'tab'];
   }
+  static langMap = [
+    { regex: /^(javascript|js|node|nodejs|jsx|tsx)$/i, value: 'js' },
+    { regex: /^(typescript|ts)$/i, value: 'ts' },
+    { regex: /^(python|py)$/i, value: 'py' }
+  ];
 
   constructor() {
     super();
@@ -204,19 +210,25 @@ class Editor extends HTMLElement {
     }
   }
 
-  connectedCallback() {
+  async connectedCallback() {
     this.#updateLang(this.getAttribute('lang') ?? 'plain');
     this.#updatePlace(this.getAttribute('placeholder') ?? '');
     this.#updateTab(this.getAttribute('tab') ?? '2');
+
+    await this.#loadParser();
+    
     this.#render();
   }
   #$(s, r=this.shadowRoot) {
     return r.querySelector(s);
   }
-  attributeChangedCallback(name, oldValue, newValue) {
+  async attributeChangedCallback(name, oldValue, newValue) {
+    if (!this.isConnected) return;
+
     switch (name) {
       case 'lang': {
         this.#updateLang(newValue);
+        await this.#loadParser();
         this.#render();
         break;
       }
@@ -232,8 +244,28 @@ class Editor extends HTMLElement {
     }
   }
 
+  async #loadParser() {
+    try {
+      const { default: Parser } = await import(`/Editor/lexers/${this.#lang}.min.js`);
+      this.#parser = Parser;
+    } catch (e) {
+      console.warn(`Parser for "${this.#lang}" not found. Falling back to plain.`);
+      const Parser = class {tokenize(v) {return [{type:'plain',value:v}]};
+      this.#parser = Parser;
+      this.#lang = 'plain';
+    }
+  }
+  #normalizeLang(lang) {
+    const name = lang.toLowerCase().trim();
+    for (const item of Editor.langMap) {
+      if (item.regex.test(name)) {
+        return item.value;
+      }
+    }
+    return name;
+  }
   #updateLang(v) {
-    this.#lang = v;
+    this.#lang = this.#normalizeLang(v);
   }
   #updatePlace(v) {
     this.#place = v;
@@ -281,7 +313,7 @@ class Editor extends HTMLElement {
     flex.style.height = text.style.height;
   }
   #update(view, text) {
-    view.innerHTML = new window.Parser().tokenize(text.value).map(tok => `<span class="${tok.type}">${this.#escapeHtml(tok.value)}</span>`).join('');
+    view.innerHTML = new this.#parser().tokenize(text.value).map(tok => `<span class="${tok.type}">${this.#escapeHtml(tok.value)}</span>`).join('');
     this.#autoResize(text, view);
   }
   #updateLines(text) {
@@ -382,7 +414,6 @@ class Editor extends HTMLElement {
           const insert = '\n' + indent;
         
           text.value = before + insert + after;
-          
         
           const pos = start + insert.length;
           text.selectionStart = text.selectionEnd = pos;
