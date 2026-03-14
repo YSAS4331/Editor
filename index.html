@@ -9,6 +9,15 @@
     <script src="./editor.js"></script>
   </head>
   <body>
-    <com-editor lang="js" style="min-height: 300px; width: 75vw;"></com-editor>
+    <input type="text" placeholder="言語を入力..." value="js" id="lang" /><button type="button" id="apply">適応する</button>
+    <com-editor lang="js" style="min-height: 300px; width: 75vw;" id="editor"></com-editor>
+    <script>
+      const input = document.getElementById('lang');
+      const apply = document.getElementById('apply');
+      const editor = document.getElementById('editor');
+      apply.addEventListener('click', () => {
+        editor.lang = input.value;
+      });
+    </script>
   </body>
 </html>
