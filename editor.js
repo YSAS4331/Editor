@@ -183,8 +183,7 @@ class Editor extends HTMLElement {
   }
   static langMap = [
     { regex: /^(javascript|js|node|nodejs|jsx|tsx)$/i, value: 'js' },
-    { regex: /^(typescript|ts)$/i, value: 'ts' },
-    { regex: /^(python|py)$/i, value: 'py' }
+    { regex: /^(javascriptobjectnotation|)$/i, value: 'json' }
   ];
 
   constructor() {
