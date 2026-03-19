@@ -121,7 +121,7 @@ class Editor extends HTMLElement {
       background: transparent;
       border-radius: 12px;
     }
-    .text::selection {
+    .highlight-text::selection {
       color: transparent;
       background: #dbebff;
     }
@@ -324,7 +324,7 @@ class Editor extends HTMLElement {
   }
   #updateLines(text) {
     const line = this.#$('.line');
-    const view = this.#$('.view');
+    const view = this.#$('.highlight-view');
     const count = text.value.split('\n').length;
     const index = text.value.slice(0, text.selectionStart).split('\n').length;
   
@@ -337,8 +337,8 @@ class Editor extends HTMLElement {
     line.style.height = text.scrollHeight + 'px';
   }
   #attachEvent() {
-    const text = this.#$('.text');
-    const view = this.#$('.view');
+    const text = this.#$('.highlight-text');
+    const view = this.#$('.highlight-view');
     const buttons = this.#$('.icons');
     buttons.addEventListener('click', async e => {
       const tg = e.target.closest('button');
