@@ -202,7 +202,6 @@ header {
     /* <!DOCTYPE html> */
     & .doctype {
       color: var(--one-comment);
-      font-style: italic;
     }
 
     /* <!-- comment --> */
