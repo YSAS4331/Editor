@@ -160,6 +160,14 @@ class Editor extends HTMLElement {
     .templateexprend {
       color: var(--temp-expr-color,#383a42);
     }
+    .tagopen, .tagclose, .selfclose { color: #e45649; }
+    .tagname { color: #986801; }
+    .attrname { color: #4078f2; }
+    .equals { color: #383a42; }
+    .attrvalue { color: #50a14f; }
+    .text { color: #383a42; }
+    .comment, .doctype { color: #a0a1a7; }
+    .scriptcontent, .stylecontent { color: #50a14f; }
     .error {
       background: var(--err-bg,#ffdddd);
       color: var(--err-color,#e45649);
