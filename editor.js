@@ -239,7 +239,6 @@ header {
       color: #50a14f;
     }
   }
-  .highlight-view {
   &.css {
 
     /* コメント */
