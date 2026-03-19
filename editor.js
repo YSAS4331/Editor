@@ -5,185 +5,227 @@ class Editor extends HTMLElement {
   #timer;
   #parser;
   #style = `
-    :host {
-      width: 100%;
-      height: 100%;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      background: rgba(255, 255, 255, 0.25);
-      border-radius: 12px;
-      border: 2px solid #c0c7d1;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      padding: .1rem 1rem;
-      background: #f8f8f8;
-      border-radius: 12px 12px 0 0;
-      user-select: none;
-      height: 15%;
+  :host {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+  border: 2px solid #c0c7d1;
 
-      display: flex;
-    }
-    .icons {
-      display: flex;
-      flex: 1;
+  /* Atom One Light colors */
+  --one-fg: #383a42;
+  --one-keyword: #a626a4;
+  --one-string: #50a14f;
+  --one-number: #986801;
+  --one-regex: #c18401;
+  --one-ident: #4078f2;
+  --one-punc: #383a42;
+  --one-comment: #a0a1a7;
+  --one-template: #50a14f;
+  --one-template-expr: #383a42;
+  --one-error-bg: #ffdddd;
+  --one-error-fg: #e45649;
+}
 
-      flex-direction: row-reverse;
-      padding: .1rem .3rem;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-      gap: .3rem;
-      button {
-        border: none;
-        background: none;
-        cursor: pointer;
-      }
-    }
-    
-    .flex {
-      display: flex;
-      width: 97.5%;
-      flex: 1;
-      border: 2px solid #c0c7d1;
-      border-radius: 12px;
-      margin: 0 auto;
-      margin-bottom: .5rem;
-    }
-    
-    .line {
-      display: flex;
-      flex-direction: column;
-      min-width: 40px;
-      max-width: 50%;
-      height: 100%;
-      resize: horizontal;
-      overflow: hidden;
-      color: rgba(0, 0, 0, 0.4);
-      font-family: monospace;
-      font-size: 14px;
-      border-right: 1px solid #c0c7d1;
-      line-height: 1.5;
-      padding: .5rem .25rem;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: .1rem 1rem;
+  background: #f8f8f8;
+  border-radius: 12px 12px 0 0;
+  user-select: none;
+  height: 15%;
+  display: flex;
+}
 
-      user-select: none;
-    }
-    .line p.active {
-      color: #000;
-    }
-    
-    .content {
-      flex: 1;
-      position: relative;
-      height: 100%;
-    }
-    .content > * {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-    
-      border: none;
-      border-radius: 12px;
-      background: transparent;
-    
-      font-family: monospace;
-      font-size: 14px;
-      line-height: 1.5;
-      color: #383a42;
-    
-      white-space: pre;
-      overflow-x: scroll; overflow-y: hidden;
-    
-      min-height: 150px;
+.icons {
+  display: flex;
+  flex: 1;
+  flex-direction: row-reverse;
+  padding: .1rem .3rem;
+  gap: .3rem;
 
-      padding: .5rem;
+  button {
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+}
+
+.flex {
+  display: flex;
+  width: 97.5%;
+  flex: 1;
+  border: 2px solid #c0c7d1;
+  border-radius: 12px;
+  margin: 0 auto;
+  margin-bottom: .5rem;
+}
+
+.line {
+  display: flex;
+  flex-direction: column;
+  min-width: 40px;
+  max-width: 50%;
+  height: 100%;
+  resize: horizontal;
+  overflow: hidden;
+  color: rgba(0, 0, 0, 0.4);
+  font-family: monospace;
+  font-size: 14px;
+  border-right: 1px solid #c0c7d1;
+  line-height: 1.5;
+  padding: .5rem .25rem;
+  user-select: none;
+
+  p.active {
+    color: #000;
+  }
+}
+
+.content {
+  flex: 1;
+  position: relative;
+  height: 100%;
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    white-space: pre;
+    overflow-x: scroll;
+    overflow-y: hidden;
+
+    min-height: 150px;
+    padding: .5rem;
+  }
+}
+
+.highlight-view {
+  pointer-events: none;
+  user-select: none;
+  cursor: text;
+  color: var(--one-fg);
+
+  /* 言語クラスはここに付く (.js, .json, .plain) */
+}
+
+.highlight-text {
+  resize: none;
+  outline: none;
+  color: transparent;
+  caret-color: #000;
+  background: transparent;
+  border-radius: 12px;
+
+  &::selection {
+    color: transparent;
+    background: #dbebff;
+  }
+}
+
+/* ============================
+   Atom One Light — Token Colors
+   ============================ */
+
+.comment {
+  color: var(--one-comment);
+  font-style: italic;
+}
+
+.keyword {
+  color: var(--one-keyword);
+}
+
+.string {
+  color: var(--one-string);
+}
+
+.number {
+  color: var(--one-number);
+}
+
+.regex {
+  color: var(--one-regex);
+}
+
+.identifier {
+  color: var(--one-ident);
+}
+
+.punctuator {
+  color: var(--one-punc);
+}
+
+.templatestart,
+.templateend,
+.templatechunk {
+  color: var(--one-template);
+}
+
+.templateexprstart,
+.templateexprend {
+  color: var(--one-template-expr);
+}
+
+.error {
+  background: var(--one-error-bg);
+  color: var(--one-error-fg);
+  border-bottom: 1px dashed var(--one-error-fg);
+}
+
+/* ============================
+   Language-specific tweaks
+   ============================ */
+
+.highlight-view {
+  &.plain {
+    > * {
+      color: var(--one-fg);
     }
-    .highlight-view {
-      pointer-events: none;
-      user-select: none;
-      cursor: text;
-    }
-    .highlight-text {
-      resize: none;
-      outline: none;
-      color: transparent;
-      caret-color: #000;
-    
-      background: transparent;
-      border-radius: 12px;
-    }
-    .highlight-text::selection {
-      color: transparent;
-      background: #dbebff;
-    }
-    .whitespace {
-    }
-    .comment {
-      color: var(--com-color,#a0a1a7);
-      font-style: var(--com-style,italic);
-    }
-    .keyword {
-      color: var(--key-color,#a626a4);
-    }
-    .identifier {
-      color: var(--ident-color,#4078f2);
-    }
-    .number {
-      color: var(--num-color,#986801);
-    }
-    .string {
-      color: var(--str-color,#50a14f);
-    }
-    .regex {
-      color: var(--reg-color,#c18401);
-    }
-    .punctuator {
-      color: var(--punc-color,#383a42);
-    }
-    .templatestart,
-    .templateend {
-      color: var(--temp-color,#50a14f);
-    }
-    .templatechunk {
-      color: var(--temp-color,#50a14f);
-    }
-    .templateexprstart,
-    .templateexprend {
-      color: var(--temp-expr-color,#383a42);
-    }
-    .tagopen, .tagclose, .selfclose { color: #e45649; }
-    .tagname { color: #986801; }
-    .attrname { color: #4078f2; }
-    .equals { color: #383a42; }
-    .attrvalue { color: #50a14f; }
-    .text { color: #383a42; }
-    .comment, .doctype { color: #a0a1a7; }
-    .scriptcontent, .stylecontent { color: #50a14f; }
-    .error {
-      background: var(--err-bg,#ffdddd);
-      color: var(--err-color,#e45649);
-      border-bottom: var(--err-bottom,1px dashed #e45649);
-    }
-    .active {
-      background: var(--act-bg, #f0f0f0);
-    }
-    .ms-icon {
-      font-family: 'Material Symbols Outlined';
-      font-variation-settings:
-        'FILL' 0,
-        'wght' 400,
-        'GRAD' 0,
-        'opsz' 24;
-    }
+  }
+
+  &.json {
+    /* JSON は keyword が無いので特に上書き不要 */
+  }
+
+  &.js {
+    /* 必要ならここに JS 特有の調整を追加 */
+  }
+}
+
+/* Active line */
+.active {
+  background: var(--act-bg, #f0f0f0);
+}
+
+.ms-icon {
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
   `;
 
   static get observedAttributes() {
@@ -300,7 +342,7 @@ class Editor extends HTMLElement {
         <div class="line"></div>
         <div class="content">
           <textarea class="highlight-text" placeholder="${this.#place}" spellcheck="false"></textarea>
-          <div class="highlight-view"></div>
+          <div class="highlight-view ${this.#lang}"></div>
         </div>
       </div>
     `;
