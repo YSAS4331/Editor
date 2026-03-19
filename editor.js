@@ -107,12 +107,12 @@ class Editor extends HTMLElement {
 
       padding: .5rem;
     }
-    .view {
+    .highlight-view {
       pointer-events: none;
       user-select: none;
       cursor: text;
     }
-    .text {
+    .highlight-text {
       resize: none;
       outline: none;
       color: transparent;
@@ -299,8 +299,8 @@ class Editor extends HTMLElement {
       <div class="flex">
         <div class="line"></div>
         <div class="content">
-          <textarea class="text" placeholder="${this.#place}" spellcheck="false"></textarea>
-          <div class="view"></div>
+          <textarea class="highlignt-text" placeholder="${this.#place}" spellcheck="false"></textarea>
+          <div class="highlight-view"></div>
         </div>
       </div>
     `;
