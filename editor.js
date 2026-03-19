@@ -142,11 +142,6 @@ header {
     background: #dbebff;
   }
 }
-
-/* ============================
-   Atom One Light — Token Colors
-   ============================ */
-
 .comment {
   color: var(--one-comment);
   font-style: italic;
@@ -192,19 +187,11 @@ header {
   color: var(--one-error-fg);
   border-bottom: 1px dashed var(--one-error-fg);
 }
-
-/* ============================
-   HTML (Atom One Light)
-   ============================ */
 .highlight-view {
   &.html {
-
-    /* <!DOCTYPE html> */
     & .doctype {
       color: var(--one-comment);
     }
-
-    /* <!-- comment --> */
     & .comment {
       color: var(--one-comment);
       font-style: italic;
@@ -250,6 +237,86 @@ header {
     /* <style> 中身 */
     & .stylecontent {
       color: #50a14f;
+    }
+  }
+  .highlight-view {
+  &.css {
+
+    /* コメント */
+    & .comment {
+      color: var(--one-comment);
+      font-style: italic;
+    }
+
+    /* @media, @import など */
+    & .atrule {
+      color: #a626a4; /* keyword と同じ紫 */
+      font-weight: bold;
+    }
+
+    /* important */
+    & .keyword {
+      color: #a626a4;
+      font-weight: bold;
+    }
+
+    /* セレクタ（タグ名扱い） */
+    & .identifier {
+      color: #4078f2; /* 青 */
+    }
+
+    /* .class */
+    & .class {
+      color: #4078f2;
+    }
+
+    /* #id */
+    & .hash {
+      color: #986801; /* 黄土色 */
+    }
+
+    /* :hover, ::before */
+    & .pseudo {
+      color: #a626a4; /* 紫 */
+    }
+
+    /* 属性セレクタの ^= *= など */
+    & .attr-operator {
+      color: var(--one-punc);
+    }
+
+    /* 文字列 */
+    & .string {
+      color: #50a14f; /* 緑 */
+    }
+
+    /* 数値 + 単位 */
+    & .number {
+      color: #986801; /* 黄土色 */
+    }
+
+    /* > + ~ || など */
+    & .combinator {
+      color: var(--one-punc);
+      font-weight: bold;
+    }
+
+    /* &（ネスト） */
+    & .nesting {
+      color: #e45649; /* 赤 */
+      font-weight: bold;
+    }
+
+    /* {} ; : () など */
+    & .punctuator {
+      color: var(--one-punc);
+    }
+
+    /* エラー */
+    & .error {
+      background: var(--one-error-bg);
+      color: var(--one-error-fg);
+      border-bottom: 1px dashed var(--one-error-fg);
     }
   }
 }
