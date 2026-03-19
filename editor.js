@@ -199,11 +199,11 @@ class Editor extends HTMLElement {
     this.attachShadow({ mode: 'open' });
     this.buttonActions = {
       del: () => {
-        this.#$('.text').value = '';
+        this.#$('.highlight-text').value = '';
         this.#render();
       },
       copy: async () => {
-        const t = this.#$('.text');
+        const t = this.#$('.highlight-text');
         const copysp = this.#$('#copyBtn span');
         t.select();
         try {
@@ -305,7 +305,7 @@ class Editor extends HTMLElement {
       </div>
     `;
     this.#attachEvent();
-    this.#updateLines(this.#$('.text'));
+    this.#updateLines(this.#$('.highlight-text'));
   }
   #autoResize(text, view) {
     text.style.height = 'auto';
