@@ -194,22 +194,64 @@ header {
 }
 
 /* ============================
-   Language-specific tweaks
+   HTML (Atom One Light)
    ============================ */
-
 .highlight-view {
-  &.plain {
-    > * {
+  &.html {
+
+    /* <!DOCTYPE html> */
+    & .doctype {
+      color: var(--one-comment);
+      font-style: italic;
+    }
+
+    /* <!-- comment --> */
+    & .comment {
+      color: var(--one-comment);
+      font-style: italic;
+    }
+
+    /* < / <tag> / </tag> */
+    & .tagopen,
+    & .tagclose,
+    & .selfclose {
+      color: #e45649; /* 赤系（One Light のタグ色） */
+    }
+
+    /* タグ名 */
+    & .tagname {
+      color: #986801; /* 黄土色 */
+    }
+
+    /* 属性名 */
+    & .attrname {
+      color: #4078f2; /* 青 */
+    }
+
+    /* = */
+    & .equals {
+      color: var(--one-punc);
+    }
+
+    /* "value" */
+    & .attrvalue {
+      color: #50a14f; /* 緑 */
+    }
+
+    /* テキストノード */
+    & .text {
       color: var(--one-fg);
     }
-  }
 
-  &.json {
-    /* JSON は keyword が無いので特に上書き不要 */
-  }
+    /* <script> 中身 */
+    & .scriptcontent {
+      color: #50a14f; /* 緑（One Light の string に近い） */
+    }
 
-  &.js {
-    /* 必要ならここに JS 特有の調整を追加 */
+    /* <style> 中身 */
+    & .stylecontent {
+      color: #50a14f;
+    }
   }
 }
 
