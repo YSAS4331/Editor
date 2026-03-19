@@ -166,7 +166,7 @@ class Editor extends HTMLElement {
     .equals { color: #383a42; }
     .attrvalue { color: #50a14f; }
     .text { color: #383a42; }
-    .comment, .doctype { color: #a0a1a7; }
+    .comment, .doctype { color: #a0a1a7; 
     .scriptcontent, .stylecontent { color: #50a14f; }
     .error {
       background: var(--err-bg,#ffdddd);
@@ -299,7 +299,7 @@ class Editor extends HTMLElement {
       <div class="flex">
         <div class="line"></div>
         <div class="content">
-          <textarea class="highlignt-text" placeholder="${this.#place}" spellcheck="false"></textarea>
+          <textarea class="highlight-text" placeholder="${this.#place}" spellcheck="false"></textarea>
           <div class="highlight-view"></div>
         </div>
       </div>
