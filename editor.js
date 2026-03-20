@@ -149,7 +149,7 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 
   async #loadParser() {
     try {
-      const { tokenize } = await import(`https://cdn.jsdelivr.net/gh/ysas4331/Editor/lexers/${this.#lang}.min.js`);
+      const { tokenize } = await import(`https://cdn.jsdelivr.net/gh/ysas4331/Editor@main/lexers/${this.#lang}.min.js`);
       this.#parser = tokenize;
     } catch (e) {
       console.warn(`Parser for "${this.#lang}" not found. Falling back to plain.`);
