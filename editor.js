@@ -41,20 +41,23 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 /* ========================= */
 /* CSS TOKENS                */
 /* ========================= */
-.css-comment { color: var(--one-comment); font-style: italic; }
-.css-atrule { color: #a626a4; font-weight: bold; }
-.css-keyword { color: #a626a4; font-weight: bold; }
-.css-identifier { color: #4078f2; }
-.css-class { color: #4078f2; }
-.css-hash { color: #986801; }
-.css-pseudo { color: #a626a4; }
+.css-whitespace { color: var(--one-fg); }
+.css-comment { color: var(--one-comment); }
+.css-atrule { color: var(--one-keyword); }
+.css-keyword { color: var(--one-keyword); }
+.css-identifier { color: var(--one-ident); }
+.css-class { color: var(--one-ident); }
+.css-hash { color: var(--one-ident); }
+.css-pseudo { color: var(--one-keyword); }
 .css-attr-operator { color: var(--one-punc); }
-.css-string { color: #50a14f; }
-.css-number { color: #986801; }
-.css-combinator { color: var(--one-punc); font-weight: bold; }
-.css-nesting { color: #e45649; font-weight: bold; }
+.css-string { color: var(--one-string); }
+.css-number { color: var(--one-number); }
+.css-combinator { color: var(--one-punc); }
+.css-nesting { color: var(--one-keyword); }
 .css-punctuator { color: var(--one-punc); }
-.css-error { background: var(--one-error-bg); color: var(--one-error-fg); border-bottom: 1px dashed var(--one-error-fg); }
+.css-property { color: var(--one-ident); }
+.css-value { color: var(--one-string); }
+.css-error { color: var(--one-error-fg); background: var(--one-error-bg); }
 
 /* ========================= */
 /* JS TOKENS                 */
