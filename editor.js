@@ -4,7 +4,7 @@ class Editor extends HTMLElement {
   #tab;
   #timer;
   #parser;
-  static tokenizers = {};
+  static tokenizers = new Map();
   #style = `
 :host { width: 100%; height: 100%; position: relative; display: flex; flex-direction: column; background: rgba(255,255,255,0.25); border-radius: 12px; border: 2px solid #c0c7d1; --one-fg: #383a42; --one-keyword: #a626a4; --one-string: #50a14f; --one-number: #986801; --one-regex: #c18401; --one-ident: #4078f2; --one-punc: #383a42; --one-comment: #a0a1a7; --one-template: #50a14f; --one-template-expr: #383a42; --one-error-bg: #ffdddd; --one-error-fg: #e45649; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -159,10 +159,9 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
       }
     }
   }
-
   async #loadParser(lang, flag=false) {
     const l = lang ?? this.#lang;
-    const langTok = Editor.tokenizers[l];
+    const langTok = Editor.tokenizers.get(l);
   
     if (langTok) {
       if (!flag) this.#parser = langTok;
@@ -172,7 +171,7 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
     try {
       const { tokenize } = await import(`https://ysas4331.github.io/Editor/lexers/${l}.min.js`);
   
-      Editor.tokenizers[l] = tokenize;
+      Editor.tokenizers.set(l, tokenize);
   
       if (!flag) this.#parser = tokenize;
       return tokenize;
@@ -182,7 +181,7 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
   
       const t = v => [{ type: 'plain', value: v }];
   
-      Editor.tokenizers[l] = t;
+      Editor.tokenizers.set(l, t);
   
       if (!flag) this.#parser = t;
       this.#lang = 'plain';
