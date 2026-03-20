@@ -4,6 +4,7 @@ class Editor extends HTMLElement {
   #tab;
   #timer;
   #parser;
+  static tokenizers = {};
   #style = `
 :host { width: 100%; height: 100%; position: relative; display: flex; flex-direction: column; background: rgba(255,255,255,0.25); border-radius: 12px; border: 2px solid #c0c7d1; --one-fg: #383a42; --one-keyword: #a626a4; --one-string: #50a14f; --one-number: #986801; --one-regex: #c18401; --one-ident: #4078f2; --one-punc: #383a42; --one-comment: #a0a1a7; --one-template: #50a14f; --one-template-expr: #383a42; --one-error-bg: #ffdddd; --one-error-fg: #e45649; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -156,14 +157,33 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
     }
   }
 
-  async #loadParser() {
+  async #loadParser(lang, flag=false) {
+    const l = lang ?? this.#lang;
+    const langTok = Editor.tokenizers[l];
+  
+    if (langTok) {
+      if (!flag) this.#parser = langTok;
+      return langTok;
+    }
+  
     try {
-      const { tokenize } = await import(`https://cdn.jsdelivr.net/gh/ysas4331/Editor@main/lexers/${this.#lang}.min.js`);
-      this.#parser = tokenize;
+      const { tokenize } = await import(`https://cdn.jsdelivr.net/gh/ysas4331/Editor@main/lexers/${l}.min.js`);
+  
+      Editor.tokenizers[l] = tokenize;
+  
+      if (!flag) this.#parser = tokenize;
+      return tokenize;
+  
     } catch (e) {
-      console.warn(`Parser for "${this.#lang}" not found. Falling back to plain.`);
-      this.#parser =v=>[{type: 'plain', value: v}];
+      console.warn(`Parser for "${l}" not found. Falling back to plain.`);
+  
+      const t = v => [{ type: 'plain', value: v }];
+  
+      Editor.tokenizers[l] = t;
+  
+      if (!flag) this.#parser = t;
       this.#lang = 'plain';
+      return t;
     }
   }
   #normalizeLang(lang) {
