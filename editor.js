@@ -24,7 +24,7 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 /* ========================= */
 /* HTML TOKENS               */
 /* ========================= */
-.html-doctype { color: var(--one-comment); font-style: italic; }
+.html-doctype { color: var(--one-comment); }
 .html-comment { color: var(--one-comment); font-style: italic; }
 .html-tagopen { color: #e45649; }
 .html-tagclose { color: #e45649; }
