@@ -244,10 +244,12 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
     flex.style.height = text.style.height;
   }
   async #update(view, text) {
-    view.innerHTML = this.#parser(text.value, {
+    const tokens = this.#parser(text.value, {
       "tokenizeStyle": await this.#loadParser('css', true),
       "tokenizeScript": await this.#loadParser('js', true)
-    }).map(tok =>
+    });
+    console.log(tokens);
+    view.innerHTML = tokens.map(tok =>
       `<span class="${(tok.lang ?? this.#lang)}-${tok.type}">${this.#escapeHtml(tok.value)}</span>`
     ).join('');
     this.#autoResize(text, view);
