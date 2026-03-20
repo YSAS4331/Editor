@@ -243,8 +243,11 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
     const flex = content.parentElement;
     flex.style.height = text.style.height;
   }
-  #update(view, text) {
-    view.innerHTML = this.#parser(text.value).map(tok =>
+  async #update(view, text) {
+    view.innerHTML = this.#parser(text.value, {
+      "tokenizeStyle": await this.#loadParser('css', true),
+      "tokenizeScript": await this.#loadParser('js', true)
+    }).map(tok =>
       `<span class="${(tok.lang ?? this.#lang)}-${tok.type}">${this.#escapeHtml(tok.value)}</span>`
     ).join('');
     this.#autoResize(text, view);
