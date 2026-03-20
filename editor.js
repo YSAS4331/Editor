@@ -167,7 +167,7 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
     }
   
     try {
-      const { tokenize } = await import(`https://cdn.jsdelivr.net/gh/ysas4331/Editor@main/lexers/${l}.min.js`);
+      const { tokenize } = await import(`https://cdn.jsdelivr.net/gh/ysas4331/Editor@main/lexers/${l}.min.js?cache=${performance.now()}`);
   
       Editor.tokenizers[l] = tokenize;
   
