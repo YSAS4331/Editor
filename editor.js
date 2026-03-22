@@ -261,7 +261,9 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
   async #update(view, text) {
     const tokens = this.#parser(text.value, {
       "tokenizeStyle": await this.#loadParser('css', true),
-      "tokenizeScript": await this.#loadParser('js', true)
+      "tokenizeScript": await this.#loadParser('js', true),
+      "tokenizeMarkup": await this.#loadParser('html', true)
+      
     });
     console.log(tokens);
     view.innerHTML = tokens.map(tok =>
