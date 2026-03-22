@@ -100,7 +100,8 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
   }
   static langMap = [
     { regex: /^(javascript|js|node|nodejs|jsx|tsx)$/i, value: 'js' },
-    { regex: /^(javascriptobjectnotation|)$/i, value: 'json' }
+    { regex: /^(javascriptobjectnotation|)$/i, value: 'json' },
+    { regex: /^(markdown|md|kramdown|markdown-it)$/i, value: 'markdown' }
   ];
 
   constructor() {
