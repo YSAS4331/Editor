@@ -88,6 +88,18 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .json-punctuator { color: var(--one-punc); }
 .json-error { background: var(--one-error-bg); color: var(--one-error-fg); border-bottom: 1px dashed var(--one-error-fg); }
 
+.markdown-text        { color: #383a42; }
+.markdown-punct       { color: #383a42; }
+.markdown-whitespace  { color: #383a42; }
+.markdown-newline     { color: #383a42; }
+
+.markdown-heading     { color: #4078f2; }
+.markdown-emphasis    { color: #986801; }
+.markdown-strong      { color: #c18401; }
+.markdown-link_label  { color: #4078f2; }
+.markdown-link_url    { color: #0184bc; }
+.markdown-image_label { color: #50a14f; }
+.markdown-image_url   { color: #0184bc; }
 /* ========================= */
 /* PLAIN TOKENS              */
 /* ========================= */
