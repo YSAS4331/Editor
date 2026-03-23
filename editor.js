@@ -117,14 +117,14 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
   ];
 
   get value() {
-    return this.#s(".highlight-text")?.value ?? "";
+    return this.#$(".highlight-text")?.value ?? "";
   }
   
   set value(v) {
-    const textarea = this.#s(".highlight-text");
+    const textarea = this.#$(".highlight-text");
     if (textarea) {
       textarea.value = v;
-      this.#i();
+      this.#render();
     }
   }
   constructor() {
