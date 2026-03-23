@@ -116,6 +116,17 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
     { regex: /^(markdown|md|kramdown|markdown-it)$/i, value: 'markdown' }
   ];
 
+  get value() {
+    return this.#s(".highlight-text")?.value ?? "";
+  }
+  
+  set value(v) {
+    const textarea = this.#s(".highlight-text");
+    if (textarea) {
+      textarea.value = v;
+      this.#i();
+    }
+  }
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
