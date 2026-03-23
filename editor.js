@@ -124,7 +124,7 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
     const textarea = this.#$(".highlight-text");
     if (textarea) {
       textarea.value = v;
-      this.#render();
+      this.#update();
     }
   }
   constructor() {
