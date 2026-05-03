@@ -123,9 +123,9 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .python-dedent         { color: #6c6f72; font-style: italic; }
 .python-eof            { display: none; }
 
-.python-fstring_prefix { color: var(--one-keyword); font-weight: 700; } /* f/F をキーワード寄りに */
-.python-fstring_start  { color: var(--one-keyword); font-weight: 700; } /* 開始クォート */
-.python-fstring_end    { color: var(--one-keyword); font-weight: 700; } /* 終了クォート */
+.python-fstring_prefix { color: var(--one-string); font-weight: 700; } /* f/F をキーワード寄りに */
+.python-fstring_start  { color: var(--one-string); font-weight: 700; } /* 開始クォート */
+.python-fstring_end    { color: var(--one-string); font-weight: 700; } /* 終了クォート */
 
 .python-fstring_chunk,
 .python-template_chunk { color: var(--one-string); }
