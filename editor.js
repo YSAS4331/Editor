@@ -108,7 +108,7 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .plain-plain { color: var(--one-fg); }
 .plain-text { color: var(--one-fg); }
 
-.python-keyword        { color: var(--one-keyword); font-weight: 600; }
+.python-keyword        { color: var(--one-keyword); }
 .python-identifier     { color: var(--one-ident); }
 .python-number         { color: var(--one-number); }
 .python-string         { color: var(--one-string); }
@@ -117,8 +117,6 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .python-regex          { color: var(--one-regex); }
 .python-error          { color: var(--one-error-fg); background: var(--one-error-bg); font-weight: 600; border-bottom: 1px dashed var(--one-error-fg); }
 
-.python-whitespace     { background: transparent; color: transparent; }
-.python-newline        { display: inline; color: transparent; }
 .python-indent         { color: #6c6f72; font-style: italic; }
 .python-dedent         { color: #6c6f72; font-style: italic; }
 .python-eof            { display: none; }
