@@ -126,6 +126,39 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 
 .python-kw-strong { font-weight: 700; }
 .python-muted { color: var(--one-comment); }
+
+.lua-whitespace { color: var(--one-fg); }
+.lua-comment { color: var(--one-comment); font-style: italic; }
+.lua-comment-long { color: var(--one-comment); font-style: italic; }
+
+.lua-keyword { color: var(--one-keyword); font-weight: 600; }
+.lua-boolean { color: var(--one-keyword); font-weight: 600; }
+.lua-nil { color: var(--one-keyword); font-weight: 600; }
+
+.lua-identifier { color: var(--one-ident); }
+.lua-function { color: var(--one-ident); font-weight: 600; }
+.lua-method { color: var(--one-ident); }
+
+.lua-string { color: var(--one-string); }
+.lua-longstring { color: var(--one-string); }
+.lua-escape { color: var(--one-string); font-weight: 600; }
+
+.lua-number { color: var(--one-number); }
+.lua-hex { color: var(--one-number); }
+
+.lua-punctuator { color: var(--one-punc); }
+.lua-operator { color: var(--one-punc); }
+
+.lua-table { color: var(--one-ident); }
+.lua-field { color: var(--one-ident); }
+
+.lua-error { background: var(--one-error-bg); color: var(--one-error-fg); border-bottom: 1px dashed var(--one-error-fg); }
+
+.lua-templatestart { color: var(--one-template); }
+.lua-templateend { color: var(--one-template); }
+.lua-templatechunk { color: var(--one-template); }
+.lua-templateexprstart { color: var(--one-template-expr); }
+.lua-templateexprend { color: var(--one-template-expr); }
   `;
 
   static get observedAttributes() {
