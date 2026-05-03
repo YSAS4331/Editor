@@ -148,12 +148,6 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .python-string,
 .python-template_chunk { white-space: pre-wrap; }
 
-.python-fstring_chunk,
-.python-string,
-.python-template_chunk { white-space: pre-wrap; }
-.python-fstring_expr,
-.python-template_expr { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Mono", monospace; font-size: 0.95em; }
-
 .lua-whitespace { color: var(--one-fg); }
 .lua-comment { color: var(--one-comment); font-style: italic; }
 .lua-comment-long { color: var(--one-comment); font-style: italic; }
