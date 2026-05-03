@@ -109,13 +109,13 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .plain-text { color: var(--one-fg); }
 
 .python-keyword        { color: #a626a4; font-weight: 600; }
-.python-identifier     { color: #383a42; }
+.python-identifier     { color: #4078f2; }
 .python-number         { color: #986801; }
 .python-string         { color: #50a14f; }
 .python-comment        { color: #a0a1a7; font-style: italic; }
 .python-punctuator     { color: #383a42; }
-.python-regex          { color: #0184bc; }
-.python-error          { color: #ffffff; background: #e45649; font-weight: 600; border-bottom: 1px dashed #ffffff; }
+.python-regex          { color: #50a14f; }
+.python-error          { color: #e45649; background: rgba(228,86,73,0.06); font-weight: 600; border-bottom: 1px dashed #e45649; }
 
 .python-whitespace     { background: transparent; color: transparent; }
 .python-newline        { display: inline; color: transparent; }
@@ -131,20 +131,26 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 /* fstring 全体の開始トークン（例: f" または f'''） */
 .python-fstring_start  { color: #a626a4; font-weight: 700; }
 
-.python-fstring_chunk  { color: #50a14f; }
+.python-fstring_chunk,
+.python-template_chunk { color: #50a14f; }
 
 .python-fstring_expr_start { color: #986801; font-weight: 700; }
 .python-fstring_expr_end   { color: #986801; font-weight: 700; }
 
-.python-fstring_expr   { color: #383a42; background: rgba(64,120,242,0.06); border-radius: 2px; padding: 0 2px; }
+.python-fstring_expr   { color: #383a42; background: rgba(152,104,1,0.06); border-radius: 2px; padding: 0 2px; }
 
 .python-fstring_end    { color: #a626a4; font-weight: 700; }
 
-.python-fstring_error  { color: #ffffff; background: #e45649; font-weight: 700; border-bottom: 1px dashed #ffffff; padding: 0 2px; border-radius: 2px; }
+.python-fstring_error  { color: #e45649; background: rgba(228,86,73,0.06); font-weight: 700; border-bottom: 1px dashed #e45649; padding: 0 2px; border-radius: 2px; }
+
+.python-template_prefix { color: #50a14f; font-weight: 700; }
+.python-template_expr   { color: #986801; background: rgba(152,104,1,0.04); border-radius: 2px; padding: 0 2px; }
 
 .python-fstring_chunk,
-.python-string { white-space: pre-wrap; }
-.python-fstring_expr { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Mono", monospace; font-size: 0.95em; }
+.python-string,
+.python-template_chunk { white-space: pre-wrap; }
+.python-fstring_expr,
+.python-template_expr { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Mono", monospace; font-size: 0.95em; }
 
 .lua-whitespace { color: var(--one-fg); }
 .lua-comment { color: var(--one-comment); font-style: italic; }
