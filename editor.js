@@ -123,19 +123,15 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .python-dedent         { color: #6c6f72; font-style: italic; }
 .python-eof            { display: none; }
 
-.python-fstring_prefix { color: var(--one-string); font-weight: 700; } /* f/F をキーワード寄りに */
-.python-fstring_start  { color: var(--one-string); font-weight: 700; } /* 開始クォート */
-.python-fstring_end    { color: var(--one-string); font-weight: 700; } /* 終了クォート */
+.python-fstring_prefix { color: var(--one-string); }
+.python-fstring_start  { color: var(--one-string); }
+.python-fstring_end    { color: var(--one-string); }
 
 .python-fstring_chunk,
 .python-template_chunk { color: var(--one-string); }
 
-.python-fstring_expr_start { color: var(--one-template-expr); font-weight: 700; }
-.python-fstring_expr_end   { color: var(--one-template-expr); font-weight: 700; }
-
-.python-fstring_chunk,
-.python-string,
-.python-template_chunk { white-space: pre-wrap; }
+.python-fstring_expr_start { color: var(--one-template-expr);}
+.python-fstring_expr_end   { color: var(--one-template-expr);}
 
 .lua-whitespace { color: var(--one-fg); }
 .lua-comment { color: var(--one-comment); font-style: italic; }
