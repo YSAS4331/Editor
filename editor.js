@@ -135,7 +135,8 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
     { regex: /^(javascript|js|node|nodejs|jsx|tsx)$/i, value: 'js' },
     { regex: /^(javascriptobjectnotation|)$/i, value: 'json' },
     { regex: /^(markdown|md|kramdown|markdown-it)$/i, value: 'markdown' },
-    { regex: /^(python|py)$/i, value: 'python' }
+    { regex: /^(python|py)$/i, value: 'python' },
+    { regex: /^(lua|luau)$/i, value: 'lua' }
   ];
 
   get value() {
