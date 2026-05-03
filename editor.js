@@ -22,9 +22,22 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .active { background: var(--act-bg, #f0f0f0); }
 .ms-icon { font-family: 'Material Symbols Outlined'; font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
 
-/* ========================= */
-/* HTML TOKENS               */
-/* ========================= */
+:root{
+  --one-bg: #fafafa;
+  --one-fg: #383a42;
+  --one-comment: #a0a1a7;
+  --one-keyword: #a626a4;
+  --one-ident: #4078f2;
+  --one-string: #50a14f;
+  --one-number: #986801;
+  --one-punc: #383a42;
+  --one-template: #50a14f;
+  --one-template-expr: #986801;
+  --one-regex: #50a14f;
+  --one-error-fg: #e45649;
+  --one-error-bg: rgba(228,86,73,0.06);
+}
+
 .html-doctype { color: var(--one-comment); }
 .html-comment { color: var(--one-comment); font-style: italic; }
 .html-tagopen { color: #e45649; }
@@ -38,9 +51,6 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .html-scriptcontent { color: #50a14f; }
 .html-stylecontent { color: #50a14f; }
 
-/* ========================= */
-/* CSS TOKENS                */
-/* ========================= */
 .css-whitespace { color: var(--one-fg); }
 .css-comment { color: var(--one-comment); }
 .css-atrule { color: var(--one-keyword); }
@@ -59,9 +69,6 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .css-value { color: var(--one-string); }
 .css-error { color: var(--one-error-fg); background: var(--one-error-bg); }
 
-/* ========================= */
-/* JS TOKENS                 */
-/* ========================= */
 .js-comment { color: var(--one-comment); font-style: italic; }
 .js-keyword { color: var(--one-keyword); }
 .js-string { color: var(--one-string); }
@@ -76,9 +83,6 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .js-templateexprend { color: var(--one-template-expr); }
 .js-error { background: var(--one-error-bg); color: var(--one-error-fg); border-bottom: 1px dashed var(--one-error-fg); }
 
-/* ========================= */
-/* JSON TOKENS               */
-/* ========================= */
 .json-comment { color: var(--one-comment); font-style: italic; }
 .json-keyword { color: var(--one-keyword); }
 .json-string { color: var(--one-string); }
@@ -100,11 +104,28 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .markdown-link_url    { color: #0184bc; }
 .markdown-image_label { color: #50a14f; }
 .markdown-image_url   { color: #0184bc; }
-/* ========================= */
-/* PLAIN TOKENS              */
-/* ========================= */
+
 .plain-plain { color: var(--one-fg); }
 .plain-text { color: var(--one-fg); }
+
+.python-keyword        { color: var(--one-keyword); font-weight: 600; }
+.python-identifier     { color: var(--one-ident); }
+.python-number         { color: var(--one-number); }
+.python-string         { color: var(--one-string); }
+.python-comment        { color: var(--one-comment); font-style: italic; }
+.python-punctuator     { color: var(--one-punc); }
+.python-regex          { color: var(--one-regex); }
+.python-error          { color: var(--one-error-fg); background: var(--one-error-bg); font-weight: 600; border-bottom: 1px dashed var(--one-error-fg); }
+.python-fstring_prefix { color: var(--one-error-fg); font-weight: 600; }
+
+.python-whitespace     { background: transparent; color: transparent; }
+.python-newline        { display: inline; color: transparent; }
+.python-indent         { color: #6c6f72; font-style: italic; }
+.python-dedent         { color: #6c6f72; font-style: italic; }
+.python-eof            { display: none; }
+
+.python-kw-strong { font-weight: 700; }
+.python-muted { color: var(--one-comment); }
   `;
 
   static get observedAttributes() {
