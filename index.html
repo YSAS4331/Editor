@@ -19,6 +19,14 @@
       apply.addEventListener('click', () => {
         editor.lang = input.value;
       });
+      
+      const queryString = window.location.search;
+      
+      const urlParams = new URLSearchParams(queryString);
+      
+      const lang = urlParams.get('lang');
+      
+      if (lang) editor.lang = lang;
     </script>
   </body>
 </html>
