@@ -127,6 +127,21 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .python-kw-strong { font-weight: 700; }
 .python-muted { color: var(--one-comment); }
 
+.python-fstring_prefix { color: #b16286; font-weight: 700; }
+
+.python-fstring_start  { color: #d3869b; font-weight: 700; }
+
+.python-fstring_chunk  { color: var(--one-string); }
+
+.python-fstring_expr_start { color: #fabd2f; font-weight: 700; }
+.python-fstring_expr_end   { color: #fabd2f; font-weight: 700; }
+
+.python-fstring_expr   { color: var(--one-ident); background: rgba(250, 189, 47, 0.04); border-radius: 2px; padding: 0 1px; }
+
+.python-fstring_end    { color: #d3869b; font-weight: 700; }
+
+.python-fstring_error  { color: var(--one-error-fg); background: var(--one-error-bg); font-weight: 700; border-bottom: 1px dashed var(--one-error-fg); padding: 0 2px; border-radius: 2px; }
+
 .lua-whitespace { color: var(--one-fg); }
 .lua-comment { color: var(--one-comment); font-style: italic; }
 .lua-comment-long { color: var(--one-comment); font-style: italic; }
