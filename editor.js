@@ -133,17 +133,6 @@ header { position: sticky; top: 0; z-index: 10; padding: .1rem 1rem; background:
 .python-fstring_expr_start { color: var(--one-template-expr); font-weight: 700; }
 .python-fstring_expr_end   { color: var(--one-template-expr); font-weight: 700; }
 
-.python-fstring_expr {
-  color: var(--one-template-expr);
-  background: rgba(152,104,1,0.04);
-  border-radius: 2px;
-  padding: 0 2px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Noto Mono", monospace;
-  font-size: 0.95em;
-}
-
-.python-fstring_error  { color: var(--one-error-fg); background: var(--one-error-bg); font-weight: 700; border-bottom: 1px dashed var(--one-error-fg); padding: 0 2px; border-radius: 2px; }
-
 .python-fstring_chunk,
 .python-string,
 .python-template_chunk { white-space: pre-wrap; }
